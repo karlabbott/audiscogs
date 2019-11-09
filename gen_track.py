@@ -10,7 +10,7 @@
 
 import sys,subprocess,json,urllib.parse,datetime
 
-discogs_token="<YOUR ACCESS TOKEN>"
+discogs_token="<Your access token>"
 
 def xml_scrub(textin):
 	newtext=""
@@ -46,8 +46,41 @@ for artist in myrelease_json["artists"]:
 	x=x+1
 
 
-print("Writing out "+str(music_id)+"-tags.xml for importing into metadata.")
-tags_out=open(music_id+"-tags.xml","w")
+file_tag=artist_name.replace("'","").replace(' ','_')+myrelease_json["title"].replace("'","").replace(' ','_')[0:10]+"-"
+print("Writing out "+str(file_tag+music_id)+"-tags.xml for importing into metadata.")
+tags_out=open(file_tag+music_id+"-tags.xml","w")
+tags_out.write("<tags>\n")
+tags_out.write('\t<tag name="GENRE" value="'+xml_scrub(my_genre)+'"/>\n')
+tags_out.write('\t<tag name="YEAR" value="'+xml_scrub(myrelease_json["released"])+'"/>\n')
+tags_out.write('\t<tag name="ARTIST" value="'+xml_scrub(artist_name)+'"/>\n')
+tags_out.write('\t<tag name="ALBUM" value="'+xml_scrub(myrelease_json["title"])+'"/>\n')
+tags_out.write("</tags>\n")
+tags_out.close()
+
+# Parse the track list.
+tracklist=myrelease_json['tracklist']
+track_counter=datetime.timedelta(hours=0,minutes=0,seconds=0)
+# These two lines format the counter the way that audacity needs it
+# May need to not do time but do everything as a datetime...
+track_counter_float=float(track_counter.total_seconds())
+tcstring=str(f'{track_counter_float:.6f}')
+
+print("Writing out "+str(file_tag+music_id)+"-label.txt for importing as a label track.")
+lf=open(str(file_tag+music_id)+"-label.txt","w")
+
+# Let's generate the label file now..
+for track in tracklist:
+	lf.write(tcstring+"\t"+tcstring+"\t"+track["title"]+"\n")
+	if len(track["duration"])==0:
+		track["duration"]="05:00"
+	duration=datetime.datetime.strptime(track["duration"],"%M:%S").time()
+	track_counter_increment=datetime.timedelta(hours=duration.hour,minutes=duration.minute,seconds=duration.second)
+	track_counter=track_counter+track_counter_increment
+	track_counter_float=float(track_counter.total_seconds())
+	tcstring=str(f'{track_counter_float:.6f}')
+
+lf.close()
+
 tags_out.write("<tags>\n")
 tags_out.write('\t<tag name="GENRE" value="'+xml_scrub(my_genre)+'"/>\n')
 tags_out.write('\t<tag name="YEAR" value="'+xml_scrub(myrelease_json["released"])+'"/>\n')
