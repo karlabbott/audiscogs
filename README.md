@@ -43,7 +43,7 @@ At any time during your recording / editing, you can go to Edit->Metadata in Aud
 
 Once you have stripped out the parts of your recording that you don't want in your final output, you are ready to import the label track. To do this, click File->Import->Label Track in Audacity and select the label.txt for your release. Once this loads, the labels will be in roughly the right place and you can easily move the labels to the correct place at this point.
 
-If a release does not have track times, audiscogs will place the labels every 5 minutes apart and you will have to figure out where they go. (At least the labels have been entered and you don't have to type!)
+If a release does not have track times, audiscogs will place the labels every 5 minutes apart and you will have to figure out where they go. (At least the labels have been entered and you don't have to type them!)
 
 So there you have it. I will likely update this project with some more improvements in the coming days and weeks. 
 
