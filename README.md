@@ -15,9 +15,11 @@ To run this script, you will need:
 
 To get a Discogs Token, go here: <https://www.discogs.com/settings/developers> and click on the button labeled "Generate new token". You will take the token and edit audiscogs and change this line:
 
+~~~
 discogs_token="<Your access token>"
+~~~
   
-So that <Your access token> is no longer there and your token from Discogs is there. I may move this to a configuration file in the near future.
+So that \<Your access token\> is no longer there and your token from Discogs is there. I may move this to a configuration file in the near future.
   
 Now go to https://www.discogs.com/ and search for the album that you are working on. In this case, we'll search for "Ben Folds Five Live". Once I have found what looks like the album and click the link, I am taken to this page:
 
