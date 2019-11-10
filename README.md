@@ -1,5 +1,5 @@
 # audiscogs
-I have a lot of vinyl records and recording the records with Audacity works great, but there are still a lot of manual steps to take in order to finish the process. Two of the most tedious to me are creating the labels and typing in the metadata. As such, I set out to create tooling to reduce the level of effort required on these two steps.
+I have a number of vinyl records and recording the records with Audacity works great, but there are still a lot of manual steps to take in order to finish the process. Two of the most tedious to me are creating the labels and typing in the metadata. As such, I set out to create tooling to reduce the level of effort required on these two steps.
 
 audiscogs is a script that allows you to generate:
 
