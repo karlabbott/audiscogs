@@ -10,7 +10,30 @@
 
 import sys,subprocess,json,urllib.parse,datetime
 
-discogs_token="<Your access token>"
+
+try:
+	f=open("audiscogs.conf","r")
+except:
+	f=open("audiscogs.conf","w")
+	f.write('discogs_token="<Your access token>"\n')
+	f.close()
+	print("Please edit audiscogs.conf and provide a Discogs Access Token.")
+	sys.exit(1)
+
+discogs_token=None
+
+for line in f:
+	line=line.strip("\n").split("discogs_token=")
+	if len(line)>1:
+		discogs_token=line[1].strip('"').strip("'")
+
+f.close()
+
+if discogs_token==None or discogs_token=="<Your access token>":
+	print("Please edit audiscogs.conf and provide a Valid Discogs Access Token.")
+	print("To re-generate audiscogs.conf, delete the current file and re-run audiscogs.")
+	sys.exit(1)
+
 
 def xml_scrub(textin):
 	newtext=""
@@ -26,7 +49,18 @@ def xml_scrub(textin):
 		newtext=newtext+line
 	return newtext
 
-
+if len(sys.argv[1:])==0:
+	print("audiscogs")
+	print("")
+	print("Usage: ")
+	print("")
+	print("audiscogs <Discogs Release ID>")
+	print("")
+	print("A Discogs Release ID is the integer in this type of Discogs URL with the word release in it:")
+	print("")
+	print("https://www.discogs.com/Ben-Folds-Five-Ben-Folds-Five-Live/release/4722337")
+	print("")
+	sys.exit(1)
 
 music_id=sys.argv[1:][0]
 release_id=urllib.parse.quote(music_id,safe='')
