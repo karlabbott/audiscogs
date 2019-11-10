@@ -25,11 +25,11 @@ Now go to https://www.discogs.com/ and search for the album that you are working
 
 <https://www.discogs.com/Ben-Folds-Five-Ben-Folds-Five-Live/master/573909>
 
-This is a **master** link. We now need to find a release in the list of versions and click that. I have the 2xLP version and so I have clicked the link for that and it is:
+This is a **master** link as indicated by master in the URL. We now need to find a release in the list of versions and click that. I have the 2xLP version and so I have clicked the link for that and it is:
 
 <https://www.discogs.com/Ben-Folds-Five-Ben-Folds-Five-Live/release/4722337>
 
-You will notice that this is a **release** link and the integer ID at the end of the URL, 4722337, is the release ID.
+You will notice that this is a **release** link (indicated by release in the URL) and the integer ID at the end of the URL, 4722337, is the release ID.
 
 Once you have that, you can run:
 
