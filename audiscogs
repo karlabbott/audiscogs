@@ -60,6 +60,10 @@ if len(sys.argv[1:])==0:
 	print("")
 	print("https://www.discogs.com/Ben-Folds-Five-Ben-Folds-Five-Live/release/4722337")
 	print("")
+	print("So for this above release, you would run:")
+	print("")
+	print("audiscogs 4722337")
+	print("")
 	sys.exit(1)
 
 music_id=sys.argv[1:][0]
