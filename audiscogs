@@ -60,10 +60,6 @@ if len(sys.argv[1:])==0:
 	print("")
 	print("https://www.discogs.com/Ben-Folds-Five-Ben-Folds-Five-Live/release/4722337")
 	print("")
-	print("So for this above release, you would run:")
-	print("")
-	print("audiscogs 4722337")
-	print("")
 	sys.exit(1)
 
 music_id=sys.argv[1:][0]
@@ -84,7 +80,7 @@ for artist in myrelease_json["artists"]:
 	x=x+1
 
 
-file_tag=artist_name.replace("'","").replace(' ','_')+myrelease_json["title"].replace("'","").replace(' ','_')[0:10]+"-"
+file_tag=artist_name.replace("'","").replace(' ','_').replace("/","-")+myrelease_json["title"].replace("'","").replace(' ','_').replace("/","-")[0:10]+"-"
 print("Writing out "+str(file_tag+music_id)+"-tags.xml for importing into metadata.")
 tags_out=open(file_tag+music_id+"-tags.xml","w")
 tags_out.write("<tags>\n")
@@ -99,6 +95,7 @@ tags_out.close()
 tracklist=myrelease_json['tracklist']
 track_counter=datetime.timedelta(hours=0,minutes=0,seconds=0)
 # These two lines format the counter the way that audacity needs it
+# May need to not do time but do everything as a datetime...
 track_counter_float=float(track_counter.total_seconds())
 tcstring=str(f'{track_counter_float:.6f}')
 
