@@ -85,7 +85,10 @@ print("Writing out "+str(file_tag+music_id)+"-tags.xml for importing into metada
 tags_out=open(file_tag+music_id+"-tags.xml","w")
 tags_out.write("<tags>\n")
 tags_out.write('\t<tag name="GENRE" value="'+xml_scrub(my_genre)+'"/>\n')
-tags_out.write('\t<tag name="YEAR" value="'+xml_scrub(myrelease_json["released"])+'"/>\n')
+try:
+	tags_out.write('\t<tag name="YEAR" value="'+xml_scrub(myrelease_json["released"])+'"/>\n')
+except:
+	tags_out.write('\t<tag name="YEAR" value=""/>\n')
 tags_out.write('\t<tag name="ARTIST" value="'+xml_scrub(artist_name)+'"/>\n')
 tags_out.write('\t<tag name="ALBUM" value="'+xml_scrub(myrelease_json["title"])+'"/>\n')
 tags_out.write("</tags>\n")
