@@ -43,7 +43,13 @@ At any time during your recording / editing, you can go to Edit->Metadata in Aud
 
 Once you have stripped out the parts of your recording that you don't want in your final output, you are ready to import the label track. To do this, click File->Import->Labels in Audacity and select the label.txt for your release. Once this loads, the labels will be in roughly the right place and you can easily move the labels to the correct place at this point.
 
-If a release does not have track times, audiscogs will place the labels every 5 minutes apart and you will have to figure out where they go. (At least the labels have been entered and you don't have to type them!)
+If a release does not have track times, audiscogs will place the labels every 5 minutes apart and you will have to figure out where they go. (At least the labels have been entered and you don't have to type them!) If you would like to change the distance between labels in this situation, please edit audiscogs.conf and change:
+
+~~~
+label_distance_minutes="05"
+~~~
+
+Setting the number of minutes that you'd like between labels.
 
 So there you have it. I will likely update this project with some more improvements in the coming days and weeks. 
 

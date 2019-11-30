@@ -21,11 +21,16 @@ except:
 	sys.exit(1)
 
 discogs_token=None
+label_distance_minutes="5"
 
 for line in f:
-	line=line.strip("\n").split("discogs_token=")
+	origline=line
+	line=origline.strip("\n").split("discogs_token=")
 	if len(line)>1:
 		discogs_token=line[1].strip('"').strip("'")
+	line=origline.strip("\n").split("label_distance_minutes=")
+	if len(line)>1:
+		label_distance_minutes=line[1].strip('"').strip("'")
 
 f.close()
 
@@ -109,7 +114,7 @@ lf=open(str(file_tag+music_id)+"-label.txt","w")
 for track in tracklist:
 	lf.write(tcstring+"\t"+tcstring+"\t"+track["title"]+"\n")
 	if len(track["duration"])==0:
-		track["duration"]="05:00"
+		track["duration"]=label_distance_minutes+":00"
 	duration=datetime.datetime.strptime(track["duration"],"%M:%S").time()
 	track_counter_increment=datetime.timedelta(hours=duration.hour,minutes=duration.minute,seconds=duration.second)
 	track_counter=track_counter+track_counter_increment
