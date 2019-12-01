@@ -51,6 +51,7 @@ def xml_scrub(textin):
 		line=line.replace('<','&lt;')
 		line=line.replace('>','&gt;')
 		line=line.replace('&','&amp;')
+		line=line.replace('"','&quot;')
 		newtext=newtext+line
 	return newtext
 
